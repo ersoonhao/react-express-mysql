@@ -2,7 +2,7 @@
   "name": "react-express-same-server",
   "version": "1.0.0",
   "description": "integrate React and Node.js Express Rest Apis on same server",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
