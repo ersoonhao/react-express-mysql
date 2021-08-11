@@ -8,9 +8,12 @@ const app = express();
 
 app.use(express.static(path));
 
+// var corsOptions = {
+//   origin: "http://localhost:8081"
+// };
 var corsOptions = {
-  origin: "http://localhost:8081"
-};
+    origin: "http://node-express-env.eba-hm2rskj8.us-east-2.elasticbeanstalk.com/#/"
+  };
 
 app.use(cors(corsOptions));
 
@@ -21,6 +24,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const db = require("./app/models");
+
+// added cors for aws?? 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*')
+    res.header('Access-Control-Allow-Credentials', true)
+    res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+    next();
+  });
+
 
 db.sequelize.sync();
 // // drop the table if it already exists
